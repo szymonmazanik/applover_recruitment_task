@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="FragmentLoginFormBinding">
+
+        <variable
+            name="viewModel"
+            type="pl.szymonmazanik.applover_recruitment_task.ui.LoginFormViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/scarpa_flow">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="24dp"
+            android:paddingTop="56dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/big_gap"
+                android:drawableTop="@drawable/ic_applover"
+                android:drawablePadding="@dimen/gap"
+                android:gravity="center_horizontal"
+                android:text="@string/login"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/login_title" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/small_gap"
+                android:hint="@string/email_address"
+                android:textColorHint="@android:color/white"
+                app:hintTextAppearance="@style/AppInputHintStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.email}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/small_gap"
+                android:hint="@string/password"
+                android:textColorHint="@android:color/white"
+                app:hintTextAppearance="@style/AppInputHintStyle"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@android:color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:text="@={viewModel.password}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rounded"
+                android:onClick="@{() -> viewModel.login()}"
+                android:text="@string/login"
+                android:textColor="@android:color/white" />
+
+            <ProgressBar
+                android:id="@+id/progress_circular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/mountain_meadow"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

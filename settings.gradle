@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='applover_recruitment_task'

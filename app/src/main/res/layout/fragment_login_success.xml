@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="FragmentLoginSuccessBinding">
+
+        <variable
+            name="viewModel"
+            type="pl.szymonmazanik.applover_recruitment_task.ui.LoginSuccessViewModel" />
+    </data>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/scarpa_flow"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_applover"
+        android:drawablePadding="@dimen/gap"
+        android:gravity="center_horizontal"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="@string/success"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/login_title" />
+</LinearLayout>
+
+</layout>

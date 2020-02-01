@@ -19,9 +19,10 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingLeft="24dp"
-            android:paddingTop="56dp"
-            android:paddingRight="24dp">
+            android:paddingLeft="@dimen/gap"
+            android:paddingTop="@dimen/top_gap"
+            android:paddingRight="@dimen/gap"
+            android:paddingBottom="@dimen/top_gap">
 
             <TextView
                 android:layout_width="wrap_content"

@@ -20,5 +20,9 @@
         android:id="@+id/fragmentLoginSuccess"
         android:name="pl.szymonmazanik.applover_recruitment_task.ui.LoginSuccessFragment"
         tools:layout="@layout/fragment_login_success" >
+
+        <action
+            android:id="@+id/action_success_to_form"
+            app:destination="@+id/fragmentLoginForm" />
     </fragment>
 </navigation>

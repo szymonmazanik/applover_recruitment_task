@@ -5,4 +5,5 @@
     <dimen name="big_gap">32dp</dimen>
     <dimen name="small_gap">16dp</dimen>
     <dimen name="btn_radius">6dp</dimen>
+    <dimen name="top_gap">56dp</dimen>
 </resources>

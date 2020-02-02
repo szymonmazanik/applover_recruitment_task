@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data class="FragmentLoginFormBinding">
 
@@ -45,9 +46,12 @@
                 app:hintTextAppearance="@style/AppInputHintStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.email}" />
+                    android:text="@={viewModel.loginRequest.email}"
+                    android:textColor="@color/colorAccent"
+                    tools:text="example@email.com" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,10 +67,12 @@
                 app:passwordToggleTint="@android:color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:text="@={viewModel.password}" />
+                    android:text="@={viewModel.loginRequest.password}"
+                    android:textColor="@color/colorAccent" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

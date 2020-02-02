@@ -45,9 +45,6 @@ dependencies {
     implementation "androidx.core:core-ktx:$coreVersion"
 
     //JUnit
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation "junit:junit:$junitVersion"
 
     //Testing
@@ -68,6 +65,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
 
     //LiveData & ViewModel
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     //LiveData testing
     testImplementation "com.jraska.livedata:testing-ktx:$livedatatestingVersion"
@@ -91,5 +89,4 @@ dependencies {
 
     //Timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 }

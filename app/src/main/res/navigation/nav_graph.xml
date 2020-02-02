@@ -12,7 +12,9 @@
 
         <action
             android:id="@+id/action_form_to_success"
-            app:destination="@+id/fragmentLoginSuccess" />
+            app:destination="@+id/fragmentLoginSuccess"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out" />
 
     </fragment>
 

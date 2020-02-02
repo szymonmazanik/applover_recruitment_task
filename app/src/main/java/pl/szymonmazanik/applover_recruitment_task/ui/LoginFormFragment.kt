@@ -26,8 +26,8 @@ class LoginFormFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return DataBindingUtil.inflate<FragmentLoginFormBinding>(
+    ): View? =
+        DataBindingUtil.inflate<FragmentLoginFormBinding>(
             inflater,
             R.layout.fragment_login_form,
             container,
@@ -36,7 +36,7 @@ class LoginFormFragment : Fragment() {
             this.viewModel = this@LoginFormFragment.viewModel
             this.lifecycleOwner = viewLifecycleOwner
         }.root
-    }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -79,12 +79,12 @@ class LoginFormFragment : Fragment() {
             }
         })
 
-    private fun setupOnBackPressed() {
+    private fun setupOnBackPressed() =
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             viewModel.onBackPressed()
             showOnBackPressedSnackbar()
         }
-    }
+
 
     private fun setupExitApp() =
         viewModel.onExitAppEvent.observe(this, EventObserver {

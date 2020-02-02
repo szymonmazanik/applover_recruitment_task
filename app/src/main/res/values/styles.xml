@@ -14,8 +14,4 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="LoginButtonStyle" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:color">@color/mountain_meadow</item>
-    </style>
-
 </resources>

@@ -49,15 +49,17 @@ class ApiHelper(
         if (error is HttpException) {
             when (error.code()) {
                 UNAUTHORIZED ->
-                    errorMessage.postValue(Event(R.string.bad_login_or_password))
+                    postErrorMessage(R.string.bad_login_or_password)
                 INTERNAL_SERVER_ERROR ->
-                    errorMessage.postValue(Event(R.string.internal_server_error))
-                else -> errorMessage.postValue(Event(R.string.unknown_error))
+                    postErrorMessage(R.string.internal_server_error)
+                else -> postErrorMessage(R.string.unknown_error)
             }
         } else {
-            errorMessage.postValue(Event(R.string.unknown_error))
+            postErrorMessage(R.string.unknown_error)
         }
     }
+
+    private fun postErrorMessage(id: Int?) = errorMessage.postValue(Event(id))
 
     companion object {
         //Http errors

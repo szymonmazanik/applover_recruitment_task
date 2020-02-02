@@ -1,16 +1,12 @@
 <resources>
-    <string name="app_name">applover_recruitment_task</string>
-
     <string name="login">Login</string>
     <string name="email_address">Email address</string>
     <string name="password">Password</string>
     <string name="success">Success!</string>
 
     <!-- Errors -->
-    <string name="null_email">Email is null</string>
-    <string name="null_password">Password is null</string>
-    <string name="empty_password">Password is empty</string>
-    <string name="invalid_email">Email is invalid</string>
+    <string name="null_data">Input data is null</string>
+    <string name="invalid_data">Input data is invalid</string>
     <string name="bad_login_or_password">Bad login or password</string>
     <string name="internal_server_error">Internal Server Error</string>
     <string name="unknown_error">Unknown error</string>

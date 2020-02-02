@@ -8,12 +8,11 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.PublishSubject
-import pl.szymonmazanik.applover_recruitment_task.BuildConfig
 import pl.szymonmazanik.applover_recruitment_task.R
 import pl.szymonmazanik.applover_recruitment_task.model.entity.request.LoginRequest
 import pl.szymonmazanik.applover_recruitment_task.model.helper.ApiHelper
 import pl.szymonmazanik.applover_recruitment_task.utils.Event
-import pl.szymonmazanik.applover_recruitment_task.utils.extensions.isValidEmail
+import pl.szymonmazanik.applover_recruitment_task.utils.extensions.isInputDataValid
 import java.util.concurrent.TimeUnit
 
 
@@ -40,50 +39,43 @@ class LoginFormViewModel : ViewModel() {
     private val _loginSuccess = MutableLiveData<Event<Boolean>>()
     val loginSuccess: LiveData<Event<Boolean>> = _loginSuccess
 
-//    private val _onBackPressedEvent = MutableLiveData<Event<Boolean>>()
-//    val onBackPressedEvent: LiveData<Event<Boolean>> = _onBackPressedEvent
-
     private val _onExitAppEvent = MutableLiveData<Event<Boolean>>()
     val onExitAppEvent: LiveData<Event<Boolean>> = _onExitAppEvent
 
     // Two-way data binding, exposing MutableLiveData
-    val email = MutableLiveData<String>().apply { if(BuildConfig.DEBUG) this.value = "login@applover.pl" }
-    val password = MutableLiveData<String>().apply { if(BuildConfig.DEBUG) this.value = "password123" }
+    val loginRequest = MutableLiveData(LoginRequest("login@applover.pl", "password123"))
 
     init {
         observeBackButton()
-    }
-
-    private fun observeBackButton() {
-        compositeDisposable += backButtonClickSource
-            .debounce(DEBOUNCE_TIMEOUT, TimeUnit.MILLISECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-//            .doOnNext{_onBackPressedEvent.postValue(Event(true))}
-//            .doOnNext(__ -> Toast.makeText(this, "Press once again to exit", Toast.LENGTH_SHORT).show())
-            .timeInterval(TimeUnit.MILLISECONDS)
-            .skip(1)
-            .filter { interval -> interval.time() < EXIT_TIMEOUT }
-            .subscribeBy ( onNext = {
-                _onExitAppEvent.postValue(Event(true))
-            })
     }
 
     /**
      * Validate input data and execute [ApiHelper] login
      */
     fun login() =
-        email.value?.let { email ->
-            if (email.isValidEmail()) {
-                password.value?.let { password ->
-                    if(password.isNotEmpty()) {
-                        val loginRequest = LoginRequest(email, password)
-                        apiHelper.login(loginRequest, _loginSuccess)
-                    } else _errorMessage.postValue(Event(R.string.empty_password))
-                } ?: _errorMessage.postValue(Event(R.string.null_password))
-            } else _errorMessage.postValue(Event(R.string.invalid_email))
-        } ?: _errorMessage.postValue(Event(R.string.null_email))
+        loginRequest.value?.let {
+            if (it.isInputDataValid()) {
+                apiHelper.login(it, _loginSuccess)
+            } else postErrorMessage(R.string.invalid_data)
+        } ?: postErrorMessage(R.string.null_data)
 
     fun onBackPressed() = backButtonClickSource.onNext(true)
+
+    private fun observeBackButton() {
+        compositeDisposable += backButtonClickSource
+            .debounce(DEBOUNCE_TIMEOUT, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .timeInterval(TimeUnit.MILLISECONDS)
+            .skip(1)
+            .filter { interval -> interval.time() < EXIT_TIMEOUT }
+            .subscribeBy(onNext = {
+                _onExitAppEvent.postValue(Event(true))
+            })
+    }
+
+    private fun postErrorMessage(id: Int?) {
+        _errorMessage.postValue(Event(id))
+    }
 
     /**
      * Clears [CompositeDisposable]

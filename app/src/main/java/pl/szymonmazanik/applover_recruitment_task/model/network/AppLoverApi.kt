@@ -11,9 +11,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AppLoverApi {
-    /**
-     * Get the Characters from the API
-     */
+
     @POST("login")
     fun login(@Body loginRequest: LoginRequest): Single<LoginResponse>
 

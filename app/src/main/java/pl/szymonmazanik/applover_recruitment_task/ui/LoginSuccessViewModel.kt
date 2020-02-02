@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 
 /**
- * Empty View model for future use
+ * Empty view model for future use
  */
 class LoginSuccessViewModel : ViewModel() {
     private val compositeDisposable = CompositeDisposable()

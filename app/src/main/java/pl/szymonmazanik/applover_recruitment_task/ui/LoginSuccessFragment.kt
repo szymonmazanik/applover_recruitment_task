@@ -24,8 +24,8 @@ class LoginSuccessFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return DataBindingUtil.inflate<FragmentLoginSuccessBinding>(
+    ): View? =
+        DataBindingUtil.inflate<FragmentLoginSuccessBinding>(
             inflater,
             R.layout.fragment_login_success,
             container,
@@ -34,7 +34,7 @@ class LoginSuccessFragment : Fragment() {
             this.viewModel = this@LoginSuccessFragment.viewModel
             this.lifecycleOwner = viewLifecycleOwner
         }.root
-    }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
